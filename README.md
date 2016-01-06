@@ -1,10 +1,10 @@
-# kakwafont
+# KakwaFont
 
 Another 12px monospace bitmap font.
 
 ## Presentation
 
-Kakwafont is a 12px monospace bitmap font based on [Terminus](http://fractal.csie.org/~eric/wiki/Terminus_font).
+KakwaFont is a 12px monospace bitmap font based on [Terminus](http://terminus-font.sourceforge.net/).
 
 I found Terminus too wide, so I have changed most glyphs in order to have thin and clearly seperated characters.
 
@@ -28,17 +28,17 @@ Code example:
 
 ## License
 
-kakwafont is licensed under the SIL Open Font License, Version 1.1. The license is available with a FAQ at OFL.
+KakwaFont is licensed under the SIL Open Font License, Version 1.1. The license is available with a FAQ at OFL.
 
 ## Download
 
-The latest version of kakwafont can be downloaded here:
+The latest version of KakwaFont can be downloaded here:
 
-* [kakwafont-latest](https://github.com/kakwa/kakwafont/archive/master.tar.gz)
+* [KakwaFont-latest](https://github.com/kakwa/kakwafont/archive/master.tar.gz)
 
 Previous versions can be found here:
 
-* [kakwafont releases](https://github.com/kakwa/kakwafont/releases)
+* [KakwaFont releases](https://github.com/kakwa/kakwafont/releases)
 
 ## Install
 
@@ -49,5 +49,6 @@ To install this font, you need *bdftopcf* and *mkfontdir* (provided by the *xfon
 $ make
 
 # install
+# supports param DESTDIR and FONTDIR
 $ make install # DESTDIR=./installroot/ FONTDIR=/usr/share/fonts/X11/misc
 ```
