@@ -36,7 +36,7 @@ The license is available with a FAQ at [scripts.sil.org](http://scripts.sil.org/
 
 The latest version of KakwaFont can be downloaded here:
 
-* [KakwaFont-latest](https://github.com/kakwa/kakwafont/archive/master.tar.gz)
+* [KakwaFont latest](https://github.com/kakwa/kakwafont/archive/master.tar.gz)
 
 Previous versions can be found here:
 
