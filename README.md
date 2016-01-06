@@ -53,5 +53,8 @@ $ make
 # install
 # supports param DESTDIR and FONTDIR
 # INDEX=true triggers mkfontdir
-$ make install # DESTDIR=./installroot/ FONTDIR=/usr/share/fonts/X11/misc INDEX=true
+$ make install INDEX=true # DESTDIR=./installroot/ FONTDIR=/usr/share/fonts/X11/misc
+
+# show kakwafont name
+$ xlsfonts |grep kakwafont
 ```
