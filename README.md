@@ -28,7 +28,9 @@ Code example:
 
 ## License
 
-KakwaFont is licensed under the SIL Open Font License, Version 1.1. The license is available with a FAQ at OFL.
+KakwaFont is licensed under the SIL Open Font License, Version 1.1. 
+
+The license is available with a FAQ at [scripts.sil.org](http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL).
 
 ## Download
 
