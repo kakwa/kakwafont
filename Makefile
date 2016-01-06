@@ -9,4 +9,4 @@ fonts: kakwafont-12-b.pcf.gz kakwafont-12-n.pcf.gz
 install: fonts
 	mkdir -p $(DESTDIR)/$(FONTDIR)/
 	install -m644 *.pcf.gz $(DESTDIR)/$(FONTDIR)/
-	
+	mkfontdir $(DESTDIR)/$(FONTDIR)/	
