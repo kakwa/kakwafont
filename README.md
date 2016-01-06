@@ -16,12 +16,15 @@ The result is a clear font, well suited for programming and terminal.
 
 Ascii Table: 
 
+![Example](https://cdn.rawgit.com/kakwa/kakwafont/master/img/screen1.png)
 
 Test: 
 
+![Example](https://cdn.rawgit.com/kakwa/kakwafont/master/img/screen2.png)
 
 Code example: 
 
+![Example](https://cdn.rawgit.com/kakwa/kakwafont/master/img/screen3.png)
 
 ## License
 
