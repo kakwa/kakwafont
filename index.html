@@ -83,7 +83,10 @@ $ make
 <span class="pl-c"># install</span>
 <span class="pl-c"># supports param DESTDIR and FONTDIR</span>
 <span class="pl-c"># INDEX=true triggers mkfontdir</span>
-$ make install <span class="pl-c"># DESTDIR=./installroot/ FONTDIR=/usr/share/fonts/X11/misc INDEX=true</span></pre></div>
+$ make install INDEX=<span class="pl-c1">true</span> <span class="pl-c"># DESTDIR=./installroot/ FONTDIR=/usr/share/fonts/X11/misc</span>
+
+<span class="pl-c"># show kakwafont name</span>
+$ xlsfonts <span class="pl-k">|</span>grep kakwafont</pre></div>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/kakwa/kakwafont">Kakwafont</a> is maintained by <a href="https://github.com/kakwa">kakwa</a>.</span>
