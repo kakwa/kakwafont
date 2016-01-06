@@ -14,10 +14,11 @@ fonts: kakwafont-12-b.pcf.gz kakwafont-12-n.pcf.gz
 
 index:
 	mkfontdir $(DESTDIR)/$(FONTDIR)/
+	-xset fp rehash
 
 noindex:
 
-install-fonts:
+install-fonts: fonts
 	mkdir -p $(DESTDIR)/$(FONTDIR)/
 	install -m644 *.pcf.gz $(DESTDIR)/$(FONTDIR)/
 
