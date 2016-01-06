@@ -52,5 +52,6 @@ $ make
 
 # install
 # supports param DESTDIR and FONTDIR
-$ make install # DESTDIR=./installroot/ FONTDIR=/usr/share/fonts/X11/misc
+# INDEX=true triggers mkfontdir
+$ make install # DESTDIR=./installroot/ FONTDIR=/usr/share/fonts/X11/misc INDEX=true
 ```
