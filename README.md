@@ -113,8 +113,6 @@ And then, rescan the fonts `fc-cache -fvr`.
 
 # Using
 
-# Using
-
 ## XTerm
 
 ```sh
