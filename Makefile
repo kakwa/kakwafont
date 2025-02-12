@@ -1,17 +1,20 @@
-PREFIX ?= /usr/local
-PENTYPE_DIR = $(PREFIX)/share/fonts/opentype/kakwa-font/
-X11_DIR = $(PREFIX)/share/fonts/X11/misc/
-USER_FONT_DIR = $(HOME)/.fonts
+SYSCONFDIR ?= /etc
+PREFIX ?= /usr/
 
-ifeq ($(INDEX),true)
-RULE_INDEX = index
+ifeq ($(INSTALL_USER),true)
+OPENTYPE_DIR = $(HOME)/.fonts
+X11_DIR = $(HOME)/.fonts
+FONTS_CONF_DIR = $(HOME)/.fonts.conf.d
+INDEX ?= index rehash
 else
-RULE_INDEX = noindex
+OPENTYPE_DIR = $(PREFIX)/share/fonts/opentype/kakwafont/
+X11_DIR = $(PREFIX)/share/fonts/X11/misc/
+FONTS_CONF_DIR = $(SYSCONFDIR)/fonts/conf.d
 endif
 
 default: all-fonts
 
-# Convert BDF to PCF.GZ
+# Convert BDF to PCF
 %.pcf: %.bdf
 	@echo "Generating $@"
 	bdftopcf $^ > $@
@@ -21,54 +24,41 @@ default: all-fonts
 	cat $^ | gzip > $@
 
 # Convert PCF to OTB (OpenType Bitmap)
-%.ttf: %.bdf
-	@echo "Generating $@"
-	fonttosfnt -v -b -c -g 2 -m 2 -o $@ $^
-
 %.otb: %.bdf
 	@echo "Generating $@"
 	fontforge -lang=ff -c 'Open("$^"); Import("$^"); Generate("$@"); Close ();'
 
-otb: %.otb
+otb: kakwafont-12-n.otb kakwafont-12-b.otb
 
-ttf: %.ttf
+pcf.gz: kakwafont-12-n.pcf.gz kakwafont-12-b.pcf.gz
 
-pcf.gz: %.pcf.gz
+pcf: kakwafont-12-n.pcf kakwafont-12-b.pcf
 
 clean:
-	rm -f *.ttf *.otb *.pcf.gz *.pcf
+	rm -f *.otb *.pcf.gz *.pcf
 
 # Build all font formats
-all-fonts: kakwafont-12-n.pcf.gz kakwafont-12-n.ttf kakwafont-12-n.otb \
-	kakwafont-12-b.pcf.gz kakwafont-12-b.ttf kakwafont-12-b.otb
+all-fonts: otb pcf pcf.gz
 
-index:
-ifeq ($(INSTALL_USER),true)
-	mkfontdir $(USER_FONT_DIR)
-else
-	mkfontdir $(DESTDIR)/$(X11_DIR)/
-endif
+index: install-fonts install-conf
+	mkfontdir $(DESTDIR)$(X11_DIR)/
 
-rehash:
-	xset fp rehash
-	fc-cache -fvr
+rehash: install-fonts install-conf
+	-xset fp rehash
+	-fc-cache -fr
 
 noindex:
 
 install-fonts: all-fonts
-ifeq ($(INSTALL_USER),true)
-	mkdir -p $(USER_FONT_DIR)
-	install -m644 *.ttf $(USER_FONT_DIR)/
-	install -m644 *.otb $(USER_FONT_DIR)/
-	install -m644 *.pcf.gz $(USER_FONT_DIR)/
-else
-	mkdir -p $(DESTDIR)/$(PENTYPE_DIR)/
-	install -m644 *.ttf $(DESTDIR)/$(PENTYPE_DIR)/
-	install -m644 *.otb $(DESTDIR)/$(PENTYPE_DIR)/
-	mkdir -p $(DESTDIR)/$(X11_DIR)/
-	install -m644 *.pcf.gz $(DESTDIR)/$(X11_DIR)/
-endif
+	mkdir -p $(DESTDIR)$(OPENTYPE_DIR)/
+	install -m644 *.otb $(DESTDIR)$(OPENTYPE_DIR)/
+	mkdir -p $(DESTDIR)$(X11_DIR)/
+	install -m644 *.pcf.gz $(DESTDIR)$(X11_DIR)/
 
-install: install-fonts $(RULE_INDEX)
+install-conf:
+	mkdir -p $(DESTDIR)$(FONTS_CONF_DIR)/
+	install -m644 fc-conf/71-enable-kakwafont.conf $(DESTDIR)$(FONTS_CONF_DIR)/
 
-.PHONY: all all-fonts install install-fonts index noindex rehash clean default otb ttf pcf.gz
+install: install-fonts install-conf $(INDEX)
+
+.PHONY: all all-fonts install install-fonts install-conf index noindex rehash clean default otb pcf pcf.gz
